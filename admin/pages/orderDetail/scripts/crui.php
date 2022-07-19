@@ -70,7 +70,19 @@
       else{
         $sql = 'INSERT INTO orderDetail(id, customer, phone, address, city, addressType) VALUES(?, ?, ?, ?, ?, ?)';
         if($stmt = mysqli_prepare($con, $sql)){
-          mysqli_stmt_bind_param($stmt, "ssssss", generateRandomString(), $_POST["customer"], $_POST["phone"], $_POST["address"], $_POST["city"], $_POST["addressType"]);
+          $existId = false;
+          do{
+            $orderId = generateRandomString();
+            $sql = "SELECT * FROM orderDetail WHERE id = '".$orderId."'";
+            if ($result = mysqli_query($con, $sql)) {
+              if (mysqli_num_rows($result) > 0) {
+                $existId = true;
+              }
+            }
+          }
+          while($existId);
+          
+          mysqli_stmt_bind_param($stmt, "ssssss", $orderId, $_POST["customer"], $_POST["phone"], $_POST["address"], $_POST["city"], $_POST["addressType"]);
           if(mysqli_stmt_execute($stmt)){
             header("location: ".('../pages/index.php'));
             exit();

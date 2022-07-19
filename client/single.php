@@ -125,10 +125,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="grid images_3_of_2">
 									<div class="flexslider">
 										<ul class="slides">
-											<li data-thumb="' . $row["images1"] . '">
+										' . ($row["images1"] != '' ? '<li data-thumb="' . $row["images1"] . '">
 												<div class="thumb-image"> <img src="' . $row["images1"] . '" data-imagezoom="true" class="img-responsive"> </div>
-											</li>
-											' . ($row["images2"] != '' ? '<li data-thumb="' . $row["images2"] . '">
+											</li>' : '') .
+							($row["images2"] != '' ? '<li data-thumb="' . $row["images2"] . '">
 												<div class="thumb-image"> <img src="' . $row["images2"] . '" data-imagezoom="true" class="img-responsive"> </div>
 											</li>' : '') .
 							($row["images3"] != '' ? '<li data-thumb="' . $row["images3"] . '">
@@ -163,10 +163,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								</div>
 								<div class="occasional">
 									<h5>Size :</h5>
-									<div class="colr ert">
-										<label class="radio"><input type="radio" name="radio" class="sizeChecked" value="' . $row["size1"] . '"><i></i>' . $row["size1"] . '</label>
-									</div>
-									' . ($row["size2"] != '' ? '
+									' . ($row["size1"] != '' ? '
+									<div class="colr">
+										<label class="radio"><input type="radio" name="radio" class="sizeChecked" value="' . $row["size1"] . '"><i></i>' . $row["size1"] . ' </label>
+									</div>' : '')
+							. ($row["size2"] != '' ? '
 									<div class="colr">
 										<label class="radio"><input type="radio" name="radio" class="sizeChecked" value="' . $row["size2"] . '"><i></i>' . $row["size2"] . ' </label>
 									</div>' : '')
@@ -314,204 +315,67 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<!--//tabs-->
 			<!-- /new_arrivals -->
 			<div class="new_arrivals">
-				<h3>Featured Products</h3>
+				<h3>Sản phẩm khác</h3>
 				<!-- /womens -->
-				<div class="col-md-3 product-men women_two">
-					<div class="product-shoe-info shoe">
-						<div class="men-pro-item">
-							<div class="men-thumb-item">
-								<img src="images/s4.jpg" alt="">
-								<div class="men-cart-pro">
-									<div class="inner-men-cart-pro">
-										<a href="single.php" class="link-product-add-cart">Quick View</a>
-									</div>
-								</div>
-								<span class="product-new-top">New</span>
-							</div>
-							<div class="item-info-product">
-								<h4>
-									<a href="single.php">Shuberry Heels </a>
-								</h4>
-								<div class="info-product-price">
-									<div class="grid_meta">
-										<div class="product_price">
-											<div class="grid-price ">
-												<span class="money ">$575.00</span>
+				<?php
+				$sql = 'SELECT t.* FROM (SELECT * FROM products) t ORDER BY rand() LIMIT 4';
+				if ($result = mysqli_query($con, $sql)) {
+					while ($row = mysqli_fetch_array($result)) {
+						echo '
+							<div class="col-md-3 product-men women_two">
+								<div class="product-shoe-info shoe">
+									<div class="men-pro-item">
+										<div class="men-thumb-item">
+											<img src="' . $row['images1'] . '" alt="">
+											<div class="men-cart-pro">
+												<div class="inner-men-cart-pro">
+													<select style="width:20%; float: right" class="custom-select form-control-border" id="sizeSelected-' . $row["idCategory_product"] . '">
+																	<option selected disabled value="">Size</option>' .
+							($row["size1"] != null ? '<option value="' . $row["size1"] . '">' . $row["size1"] . '</option>' : '') .
+							($row["size2"] != '' ? '<option value="' . $row["size2"] . '">' . $row["size2"] . '</option>' : '') .
+							($row["size3"] != '' ? '<option value="' . $row["size3"] . '">' . $row["size3"] . '</option>' : '') .
+							($row["size4"] != '' ? '<option value="' . $row["size4"] . '">' . $row["size4"] . '</option>' : '') .
+							($row["size5"] != '' ? '<option value="' . $row["size5"] . '">' . $row["size5"] . '</option>' : '') .
+							'</select>
+													<a href="single.php?id=' . $row["idCategory_product"] . '" class="link-product-add-cart">XEM</a>
+												</div>
 											</div>
 										</div>
-										<ul class="stars">
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
-										</ul>
-									</div>
-									<div class="shoe single-item hvr-outline-out">
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart">
-											<input type="hidden" name="add" value="1">
-											<input type="hidden" name="shoe_item" value="Shuberry Heels">
-											<input type="hidden" name="amount" value="575.00">
-											<button type="submit" class="shoe-cart pshoe-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
+										<div class="item-info-product">
+											<h4 style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box;	-webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical;">
+												<a href="single.php?id=' . $row["idCategory_product"] . '">' . $row['nameProduct'] . '</a>
+											</h4>
+											<div class="info-product-price">
+												<div class="grid_meta">
+													<div class="product_price">
+														<div class="grid-price ">
+															<span class="money ">' . number_format($row['price'], 0, ',', '.')  . ' VNĐ</span>
+														</div>
+													</div>
+												</div>
+												<div class="shoe single-item hvr-outline-out">
+													<form class="addToCartIcon">
+														<input type="hidden" name="cmd" value="_cart">
+														<input type="hidden" name="add" value="1">
+														<input type="hidden" name="id" value="' . $row["idCategory_product"] . '">
+														<input type="hidden" name="shoe_item" value="' . $row["nameProduct"] . '">
+														<input type="hidden" name="amount" value="' . $row["price"] . '">
+														<input type="hidden" name="image" value="' . $row["images1"] . '">
+														<button type="submit" class="shoe-cart pshoe-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
 
-											<a href="#" data-toggle="modal" data-target="#myModal1"></a>
-										</form>
-
-									</div>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 product-men women_two">
-					<div class="product-shoe-info shoe">
-						<div class="men-pro-item">
-							<div class="men-thumb-item">
-								<img src="images/s5.jpg" alt="">
-								<div class="men-cart-pro">
-									<div class="inner-men-cart-pro">
-										<a href="single.php" class="link-product-add-cart">Quick View</a>
-									</div>
-								</div>
-								<span class="product-new-top">New</span>
-							</div>
-							<div class="item-info-product">
-								<h4>
-									<a href="single.php">Red Bellies </a>
-								</h4>
-								<div class="info-product-price">
-									<div class="grid_meta">
-										<div class="product_price">
-											<div class="grid-price ">
-												<span class="money ">$325.00</span>
+														<a data-toggle="modal" data-target="#myModal1"></a>
+													</form>
+												</div>
 											</div>
+											<div class="clearfix"></div>
 										</div>
-										<ul class="stars">
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-										</ul>
-									</div>
-									<div class="shoe single-item hvr-outline-out">
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart">
-											<input type="hidden" name="add" value="1">
-											<input type="hidden" name="shoe_item" value="Red Bellies">
-											<input type="hidden" name="amount" value="325.00">
-											<button type="submit" class="shoe-cart pshoe-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
-
-											<a href="#" data-toggle="modal" data-target="#myModal1"></a>
-										</form>
-
 									</div>
 								</div>
-								<div class="clearfix"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 product-men women_two">
-					<div class="product-shoe-info shoe">
-						<div class="men-pro-item">
-							<div class="men-thumb-item">
-								<img src="images/s7.jpg" alt="">
-								<div class="men-cart-pro">
-									<div class="inner-men-cart-pro">
-										<a href="single.php" class="link-product-add-cart">Quick View</a>
-									</div>
-								</div>
-								<span class="product-new-top">New</span>
-							</div>
-							<div class="item-info-product">
-								<h4>
-									<a href="single.php">Running Shoes</a>
-								</h4>
-								<div class="info-product-price">
-									<div class="grid_meta">
-										<div class="product_price">
-											<div class="grid-price ">
-												<span class="money ">$875.00</span>
-											</div>
-										</div>
-										<ul class="stars">
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
-										</ul>
-									</div>
-									<div class="shoe single-item hvr-outline-out">
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart">
-											<input type="hidden" name="add" value="1">
-											<input type="hidden" name="shoe_item" value="Running Shoes">
-											<input type="hidden" name="amount" value="875.00">
-											<button type="submit" class="shoe-cart pshoe-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
+							</div>';
+					}
+				}
+				?>
 
-											<a href="#" data-toggle="modal" data-target="#myModal1"></a>
-										</form>
-
-									</div>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 product-men women_two">
-					<div class="product-shoe-info shoe">
-						<div class="men-pro-item">
-							<div class="men-thumb-item">
-								<img src="images/s8.jpg" alt="">
-								<div class="men-cart-pro">
-									<div class="inner-men-cart-pro">
-										<a href="single.php" class="link-product-add-cart">Quick View</a>
-									</div>
-								</div>
-								<span class="product-new-top">New</span>
-							</div>
-							<div class="item-info-product">
-								<h4>
-									<a href="single.php">Sukun Casuals</a>
-								</h4>
-								<div class="info-product-price">
-									<div class="grid_meta">
-										<div class="product_price">
-											<div class="grid-price ">
-												<span class="money ">$505.00</span>
-											</div>
-										</div>
-										<ul class="stars">
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
-										</ul>
-									</div>
-									<div class="shoe single-item hvr-outline-out">
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart">
-											<input type="hidden" name="add" value="1">
-											<input type="hidden" name="shoe_item" value="Sukun Casuals">
-											<input type="hidden" name="amount" value="505.00">
-											<button type="submit" class="shoe-cart pshoe-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
-
-											<a href="#" data-toggle="modal" data-target="#myModal1"></a>
-										</form>
-
-									</div>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-						</div>
-					</div>
-				</div>
 
 				<!-- //womens -->
 				<div class="clearfix"></div>
@@ -835,6 +699,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 	<script>
+		$('.top_shoe_cart').on('click', function(event) {
+			event.preventDefault();
+			window.location = './checkout.php';
+		})
+	</script>
+	<script>
 		toastr.options = {
 			"closeButton": false,
 			"debug": false,
@@ -871,7 +741,35 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						image: values['image'],
 						size: $('.sizeChecked:checked').val(),
 					},
+					success: function(data) {}
+				});
+				toastr.success('Thêm sản phẩm vào giỏ hàng thành công');
+			} else {
+				toastr.warning('Bạn chưa chọn size cho sản phẩm này');
+			}
+		})
+		$('.addToCartIcon').on("submit", function() {
+			event.preventDefault();
+			var values = {};
+			$.each($(this).serializeArray(), function(i, field) {
+				values[field.name] = field.value;
+			});
+			var sizeSelector = '#sizeSelected-' + values['id'];
+			if ($(sizeSelector).val()) {
+				$.ajax({
+					url: './php/cart.php',
+					method: 'POST',
+					dataType: "json",
+					data: {
+						id: values['id'],
+						shoe_item: values['shoe_item'],
+						add: values['add'],
+						amount: values['amount'],
+						image: values['image'],
+						size: $(sizeSelector).val()
+					},
 					success: function(data) {
+
 					}
 				});
 				toastr.success('Thêm sản phẩm vào giỏ hàng thành công');

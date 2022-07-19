@@ -15,7 +15,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<meta name="keywords" content="Downy Shoes Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 	<script type="application/x-javascript">
-		addEventListener("load", function () {
+		addEventListener("load", function() {
 			setTimeout(hideURLbar, 0);
 		}, false);
 
@@ -31,8 +31,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- font-awesome-icons -->
 	<link href="css/font-awesome.css" rel="stylesheet">
 	<!-- //font-awesome-icons -->
-	<link href="//fonts.googleapis.com/css?family=Montserrat:100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
-	    rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Montserrat:100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800" rel="stylesheet">
 	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 </head>
 
@@ -62,19 +61,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<button id="trigger-overlay" type="button"><i class="fa fa-bars" aria-hidden="true"></i></button>
 				</div>
 				<!-- cart details -->
-				<div class="top_nav_right">
-					<div class="shoecart shoecart2 cart cart box_1">
-						<form action="#" method="post" class="last">
-							<input type="hidden" name="cmd" value="_cart">
-							<input type="hidden" name="display" value="1">
-							<button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-						</form>
-					</div>
-
-				</div>
 				<!-- //cart details -->
 				<!-- search -->
 				<div class="search_w3ls_agileinfo">
+					<div class="cd-main-header">
+						<ul class="cd-header-buttons" style="right: 210px;">
+							<li>
+								<div class="shoecart shoecart2 cart cart box_1">
+									<form action="#" method="post" class="last">
+										<input type="hidden" name="cmd" value="_cart">
+										<input type="hidden" name="display" value="1">
+										<button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+									</form>
+								</div>
+							</li>
+						</ul>
+					</div>
 					<div class="cd-main-header">
 						<ul class="cd-header-buttons">
 							<li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
@@ -304,13 +306,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 				</div>
 				<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-			<span class="fa fa-chevron-left" aria-hidden="true"></span>
-			<span class="sr-only">Previous</span>
-		</a>
+					<span class="fa fa-chevron-left" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
 				<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-			<span class="fa fa-chevron-right" aria-hidden="true"></span>
-			<span class="sr-only">Next</span>
-		</a>
+					<span class="fa fa-chevron-right" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
 				<!-- The Modal -->
 
 			</div>
@@ -442,7 +444,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	</div>
 	<!-- //footer -->
-    <a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+	<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 	<!-- js -->
 	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 	<!-- //js -->
@@ -454,9 +456,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- cart-js -->
 	<script src="js/minicart.js"></script>
 	<script>
+		$('.top_shoe_cart').on('click', function(event) {
+			event.preventDefault();
+			window.location = './checkout.php';
+		})
+	</script>
+	<script>
 		shoe.render();
 
-		shoe.cart.on('shoe_checkout', function (evt) {
+		shoe.cart.on('shoe_checkout', function(evt) {
 			var items, len, i;
 
 			if (this.subtotal() > 0) {
@@ -472,17 +480,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!--//search-bar-->
 	<script src="js/responsiveslides.min.js"></script>
 	<script>
-		$(function () {
+		$(function() {
 			$("#slider4").responsiveSlides({
 				auto: true,
 				pager: true,
 				nav: true,
 				speed: 1000,
 				namespace: "callbacks",
-				before: function () {
+				before: function() {
 					$('.events').append("<li>before event fired.</li>");
 				},
-				after: function () {
+				after: function() {
 					$('.events').append("<li>after event fired.</li>");
 				}
 			});
@@ -493,8 +501,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script type="text/javascript" src="js/move-top.js"></script>
 	<script type="text/javascript" src="js/easing.js"></script>
 	<script type="text/javascript">
-		jQuery(document).ready(function ($) {
-			$(".scroll").click(function (event) {
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event) {
 				event.preventDefault();
 				$('html,body').animate({
 					scrollTop: $(this.hash).offset().top

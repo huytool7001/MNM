@@ -68,12 +68,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("location: " . ('../pages/index.php?orderId=' . $_POST["orderId"]));
                 exit();
               } else {
-                //header("location: " . ('../../examples/404.html'));
+                header("location: " . ('../../examples/404.html'));
                 exit();
               }
               mysqli_stmt_close($stmt);
             } else {
-              //header("location: " . ('../../examples/404.html'));
+              header("location: " . ('../../examples/404.html'));
               exit();
             }
           }
@@ -86,12 +86,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           header("location: " . ('../pages/index.php?orderId='.$_POST["orderId"]));
           exit();
         } else {
-          //header("location: " . ('../../examples/404.html'));
+          header("location: " . ('../../examples/404.html'));
           exit();
         }
         mysqli_stmt_close($stmt);
       } else {
-        //header("location: " . ('../../examples/404.html'));
+        header("location: " . ('../../examples/404.html'));
         exit();
       }
     }

@@ -360,32 +360,44 @@
       // });
       $('#quickForm').validate({
         rules: {
-          name: {
+          customer: {
             required: true,
           },
-          category: {
+          phone: {
             required: true,
+            minlength: 10,
+            maxlength: 10,
+            digits: true
           },
-          color: {
+          address: {
             required: true
           },
-          price: {
+          city: {
             required: true,
-            min: 0,
-            digits: true
+          },
+          addressType: {
+            required: true,
           },
         },
         messages: {
-          name: {
+          customer: {
             required: "Đây là trường bắt buộc",
           },
-          price: {
+          phone: {
             required: "Đây là trường bắt buộc",
-            min: "Hãy nhập một giá trị phù hợp",
-            digits: "Hãy nhập một giá trị phù hợp"
+            minlength: "Hãy nhập số điện thoại hợp lệ",
+            maxlength: "Hãy nhập số điện thoại hợp lệ",
+            digits: "Hãy nhập số điện thoại hợp lệ"
           },
-          category: "Đây là trường bắt buộc",
-          color: "Đây là trường bắt buộc"
+          address: {
+            required: "Đây là trường bắt buộc",
+          },
+          city: {
+            required: "Đây là trường bắt buộc",
+          },
+          addressType: {
+            required: "Đây là trường bắt buộc",
+          },
         },
         errorElement: 'span',
         errorPlacement: function(error, element) {

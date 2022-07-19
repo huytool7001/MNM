@@ -20,13 +20,12 @@
 
 <body class="hold-transition sidebar-mini">
   <?php
-    session_start();
-    if(!isset($_COOKIE["username"])&&!isset($_COOKIE["password"]))
-    {
-        if(!isset($_SESSION["username"])){
-            header("location: " . ('../../login/pages/index.php'));
-        }
+  session_start();
+  if (!isset($_COOKIE["username"]) && !isset($_COOKIE["password"])) {
+    if (!isset($_SESSION["username"])) {
+      header("location: " . ('../../login/pages/index.php'));
     }
+  }
   ?>
   <div class="wrapper">
     <!-- Navbar -->
@@ -316,7 +315,7 @@
                             ' . $row['color'] . '
                             </td>
                             <td>
-                            ' . number_format($row['price'], 0, ',', '.') . ' VNĐ
+                            ' . $row['price'] . '
                             </td>
                             <td>
                               <a href="./form.php?id=' . $row['idCategory_product'] . '"><button class="btn btn-sm btn-primary btn-info" type="button">Chi tiết</button></a>
@@ -408,13 +407,29 @@
   <!-- AdminLTE for demo purposes -->
   <script src="../../../dist/js/demo.js"></script>
   <!-- Page specific script -->
+  <script src="https://cdn.datatables.net/plug-ins/1.12.1/sorting/formatted-numbers.js"></script>
   <script>
     $(document).ready(function() {
       $('.btnDelete').click(function() {
         $('#deleteId').val($(this).data('id'));
       })
     })
+
     $(function() {
+      jQuery.extend(jQuery.fn.dataTableExt.oSort, {
+        "formatted_numbers-pre": function(a) {
+          a = (a === "") ? 0 : a.replace(/[^\d\-\.]/g, "");
+          return parseFloat(a);
+        },
+
+        "formatted_numbers-asc": function(a, b) {
+          return a - b;
+        },
+
+        "formatted_numbers-desc": function(a, b) {
+          return b - a;
+        }
+      });
       $("#example1").DataTable({
         "responsive": true,
         "lengthChange": false,
@@ -435,6 +450,10 @@
           {
             width: "10%",
             targets: 5
+          },
+          {
+            render: $.fn.dataTable.render.number('.', 3, ''),
+            targets: 4
           },
         ],
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');

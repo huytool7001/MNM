@@ -439,32 +439,34 @@
       // });
       $('#quickForm').validate({
         rules: {
-          name: {
+          productId: {
             required: true,
           },
-          category: {
+          size: {
             required: true,
+            digits: true,
+            min: 1
           },
-          color: {
-            required: true
-          },
-          price: {
+          quantity: {
             required: true,
-            min: 0,
-            digits: true
+            digits: true,
+            min: 1
           },
         },
         messages: {
-          name: {
+          productId: {
             required: "Đây là trường bắt buộc",
           },
-          price: {
+          size: {
             required: "Đây là trường bắt buộc",
-            min: "Hãy nhập một giá trị phù hợp",
-            digits: "Hãy nhập một giá trị phù hợp"
+            digits: "Hãy nhập một giá trị phù hợp",
+            min: "Hãy nhập một giá trị phù hợp"
           },
-          category: "Đây là trường bắt buộc",
-          color: "Đây là trường bắt buộc"
+          quantity: {
+            required: "Đây là trường bắt buộc",
+            digits: "Hãy nhập một giá trị phù hợp",
+            min: "Hãy nhập một giá trị phù hợp"
+          },
         },
         errorElement: 'span',
         errorPlacement: function(error, element) {

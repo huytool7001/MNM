@@ -546,8 +546,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 														<div class="inner-men-cart-pro">
 															<a href="single.php?id=` + row["idCategory_product"] + `" class="link-product-add-cart">XEM</a>
 															<select style="width:20%; float: right" class="custom-select form-control-border" id="sizeSelected-` + row["idCategory_product"] + `">
-																<option selected disabled value=''>Size</option>
-																<option>` + row["size1"] + `</option>` +
+																<option selected disabled value=''>Size</option>` +
+									(row["size1"] != null ? `<option value="` + row["size1"] + `">` + row["size1"] + `</option>` : ``) +
 									(row["size2"] != '' ? `<option value="` + row["size2"] + `">` + row["size2"] + `</option>` : ``) +
 									(row["size3"] != '' ? `<option value="` + row["size3"] + `">` + row["size3"] + `</option>` : ``) +
 									(row["size4"] != '' ? `<option value="` + row["size4"] + `">` + row["size4"] + `</option>` : ``) +
@@ -600,7 +600,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								$.each($(this).serializeArray(), function(i, field) {
 									values[field.name] = field.value;
 								});
-								var sizeSelector = '#sizeSelected-'+values['id'];
+								var sizeSelector = '#sizeSelected-' + values['id'];
 								if ($(sizeSelector).val()) {
 									$.ajax({
 										url: './php/cart.php',
@@ -648,6 +648,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
 	<script src="./js/pagination.js"></script>
 	<script>
+		$('.top_shoe_cart').on('click', function(event) {
+			event.preventDefault();
+			window.location = './checkout.php';
+		})
+	</script>
+	<script>
 		toastr.options = {
 			"closeButton": false,
 			"debug": false,
@@ -665,6 +671,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			"showMethod": "fadeIn",
 			"hideMethod": "fadeOut"
 		}
+
 		function loadProducts() {
 
 			var data = {
@@ -697,8 +704,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 														<div class="inner-men-cart-pro">
 															<a href="single.php?id=` + row["idCategory_product"] + `" class="link-product-add-cart">XEM</a>
 															<select style="width:20%; float: right" class="custom-select form-control-border" id="sizeSelected-` + row["idCategory_product"] + `">
-																<option selected disabled value=''>Size</option>
-																<option>` + row["size1"] + `</option>` +
+																<option selected disabled value=''>Size</option>` +
+									(row["size1"] != null ? `<option value="` + row["size1"] + `">` + row["size1"] + `</option>` : ``) +
 									(row["size2"] != '' ? `<option value="` + row["size2"] + `">` + row["size2"] + `</option>` : ``) +
 									(row["size3"] != '' ? `<option value="` + row["size3"] + `">` + row["size3"] + `</option>` : ``) +
 									(row["size4"] != '' ? `<option value="` + row["size4"] + `">` + row["size4"] + `</option>` : ``) +
@@ -747,7 +754,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								$.each($(this).serializeArray(), function(i, field) {
 									values[field.name] = field.value;
 								});
-								var sizeSelector = '#sizeSelected-'+values['id'];
+								var sizeSelector = '#sizeSelected-' + values['id'];
 								if ($(sizeSelector).val()) {
 									$.ajax({
 										url: './php/cart.php',

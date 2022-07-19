@@ -97,25 +97,24 @@
     if($_SERVER["REQUEST_METHOD"] == "POST"){
       if (isset($_POST["id"]) && !empty(trim($_POST["id"]))) {
         $sql = "UPDATE products SET nameProduct = '".$_POST["name"]."', nameCategoryProduct = '".$_POST["category"]."', price = '".$_POST["price"]."', color = '".$_POST["color"]."', size1 = '".$_POST["size1"]."', size2 = '".$_POST["size2"]."', size3 = '".$_POST["size3"]."', size4 = '".$_POST["size4"]."', size5 = '".$_POST["size5"]."'";
-        if($_FILES['image1']['size'] != 0){
+        if($_POST['newImage1'] == "true" && $_FILES['image1']['size'] != 0){
           $sql .= ", images1 = '".uploadImage('image1')->data->link."'";
         }
-        if($_FILES['image2']['size'] != 0){
+        if($_POST['newImage2'] == "true" && $_FILES['image2']['size'] != 0){
           $sql .= ", images2 = '".uploadImage('image2')->data->link."'";
         }
-        if($_FILES['image3']['size'] != 0){
+        if($_POST['newImage3'] == "true" && $_FILES['image3']['size'] != 0){
           $sql .= ", images3 = '".uploadImage('image3')->data->link."'";
         }
-        if($_FILES['image4']['size'] != 0){
+        if($_POST['newImage4'] == "true" && $_FILES['image4']['size'] != 0){
           $sql .= ", images4 = '".uploadImage('image4')->data->link."'";
         }
-        if($_FILES['image5']['size'] != 0){
+        if($_POST['newImage5'] == "true" && $_FILES['image5']['size'] != 0){
           $sql .= ", images5 = '".uploadImage('image5')->data->link."'";
         }
         $sql .= " WHERE idCategory_product = '".$_POST["id"]."'";
         echo $sql;
         if($result = mysqli_query($con, $sql)){
-          
           header("location: ".('../pages/index.php'));
           exit();
         }
@@ -125,15 +124,26 @@
         }
       }
       else{
+        //echo 'size1: '. $_POST["size1"];
         $sql = 'INSERT INTO products(idCategory_product, nameProduct, nameCategoryProduct, price, color, size1, size2, size3, size4, size5, images1, images2, images3, images4, images5) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
         if($stmt = mysqli_prepare($con, $sql)){
-          mysqli_stmt_bind_param($stmt, "sssisisssssssss", $param_id, $param_name, $param_category, $param_price, $param_color, $param_size1, $param_size2, $param_size3, $param_size4, $param_size5, $param_images1, $param_images2, $param_images3, $param_images4, $param_images5);
-          $param_id = generateRandomString();
+          $existId = false;
+          do{
+            $productId = generateRandomString();
+            $sql = "SELECT * FROM products WHERE idCategory_product = '".$productId."'";
+            if ($result = mysqli_query($con, $sql)) {
+              if (mysqli_num_rows($result) > 0) {
+                $existId = true;
+              }
+            }
+          }
+          while($existId);
+          mysqli_stmt_bind_param($stmt, "sssisisssssssss", $productId, $param_name, $param_category, $param_price, $param_color, $param_size1, $param_size2, $param_size3, $param_size4, $param_size5, $param_images1, $param_images2, $param_images3, $param_images4, $param_images5);
           $param_name = $_POST["name"];
           $param_category = $_POST["category"];
           $param_color = $_POST["color"];
           $param_price = $_POST["price"];
-          $param_size1 = $_POST["size1"];
+          $param_size1 = ($_POST['size1'] === '') ? NULL : $_POST['size1'];;
           $param_size2 = $_POST["size2"];
           $param_size3 = $_POST["size3"];
           $param_size4 = $_POST["size4"];

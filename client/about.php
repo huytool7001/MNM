@@ -14,7 +14,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<meta name="keywords" content="Downy Shoes Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 	<script type="application/x-javascript">
-		addEventListener("load", function () {
+		addEventListener("load", function() {
 			setTimeout(hideURLbar, 0);
 		}, false);
 
@@ -31,14 +31,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- font-awesome-icons -->
 	<link href="css/font-awesome.css" rel="stylesheet">
 	<!-- //font-awesome-icons -->
-	<link href="//fonts.googleapis.com/css?family=Montserrat:100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
-	    rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Montserrat:100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800" rel="stylesheet">
 	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 </head>
 
 <body style="-webkit-user-select: none;">
 	<!-- banner -->
-<div class="banner_top innerpage" id="home">
+	<div class="banner_top innerpage" id="home">
 		<div class="wrapper_top_w3layouts">
 			<div class="header_agileits">
 				<div class="logo inner_page_log">
@@ -61,20 +60,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<button id="trigger-overlay" type="button"><i class="fa fa-bars" aria-hidden="true"></i></button>
 				</div>
 				<!-- cart details -->
-				<div class="top_nav_right">
-					<div class="shoecart shoecart2 cart cart box_1">
-						<form action="#" method="post" class="last">
-							<input type="hidden" name="cmd" value="_cart">
-							<input type="hidden" name="display" value="1">
-							<button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-						</form>
-					</div>
-				</div>
 			</div>
 		</div>
 		<!-- //cart details -->
 		<!-- search -->
 		<div class="search_w3ls_agileinfo">
+			<div class="cd-main-header">
+				<ul class="cd-header-buttons" style="right: 210px;">
+					<li>
+						<div class="shoecart shoecart2 cart cart box_1">
+							<form action="#" method="post" class="last">
+								<input type="hidden" name="cmd" value="_cart">
+								<input type="hidden" name="display" value="1">
+								<button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+							</form>
+						</div>
+					</li>
+				</ul>
+			</div>
 			<div class="cd-main-header">
 				<ul class="cd-header-buttons">
 					<li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
@@ -135,10 +138,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="panel panel-default">
 						<div class="panel-heading" role="tab" id="headingOne">
 							<h4 class="panel-title asd">
-								<a class="pa_italic" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true"
-								    aria-controls="collapseOne">
-							  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><i class="glyphicon glyphicon-minus" aria-hidden="true"></i>assumenda est cliche voluptate
-							</a>
+								<a class="pa_italic" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span><i class="glyphicon glyphicon-minus" aria-hidden="true"></i>assumenda est cliche voluptate
+								</a>
 							</h4>
 						</div>
 						<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
@@ -151,10 +153,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="panel panel-default">
 						<div class="panel-heading" role="tab" id="headingTwo">
 							<h4 class="panel-title asd">
-								<a class="pa_italic collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
-								    aria-controls="collapseTwo">
-							  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><i class="glyphicon glyphicon-minus" aria-hidden="true"></i>Itaque earum rerum
-							</a>
+								<a class="pa_italic collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span><i class="glyphicon glyphicon-minus" aria-hidden="true"></i>Itaque earum rerum
+								</a>
 							</h4>
 						</div>
 						<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
@@ -167,10 +168,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="panel panel-default">
 						<div class="panel-heading" role="tab" id="headingThree">
 							<h4 class="panel-title asd">
-								<a class="pa_italic collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false"
-								    aria-controls="collapseThree">
-							  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><i class="glyphicon glyphicon-minus" aria-hidden="true"></i>autem accusamus terry qui
-							</a>
+								<a class="pa_italic collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span><i class="glyphicon glyphicon-minus" aria-hidden="true"></i>autem accusamus terry qui
+								</a>
 							</h4>
 						</div>
 						<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
@@ -183,10 +183,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="panel panel-default">
 						<div class="panel-heading" role="tab" id="headingThree">
 							<h4 class="panel-title asd">
-								<a class="pa_italic collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false"
-								    aria-controls="collapseThree">
-							  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><i class="glyphicon glyphicon-minus" aria-hidden="true"></i>autem accusamus terry qui
-							</a>
+								<a class="pa_italic collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span><i class="glyphicon glyphicon-minus" aria-hidden="true"></i>autem accusamus terry qui
+								</a>
 							</h4>
 						</div>
 						<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
@@ -311,13 +310,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 				</div>
 				<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-			<span class="fa fa-chevron-left" aria-hidden="true"></span>
-			<span class="sr-only">Previous</span>
-		</a>
+					<span class="fa fa-chevron-left" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
 				<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-			<span class="fa fa-chevron-right" aria-hidden="true"></span>
-			<span class="sr-only">Next</span>
-		</a>
+					<span class="fa fa-chevron-right" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
 				<!-- The Modal -->
 
 			</div>
@@ -450,7 +449,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	</div>
 	<!-- //footer -->
-<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+	<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 	<!-- js -->
 	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 	<!-- //js -->
@@ -459,7 +458,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script>
 		shoe.render();
 
-		shoe.cart.on('shoe_checkout', function (evt) {
+		shoe.cart.on('shoe_checkout', function(evt) {
 			var items, len, i;
 
 			if (this.subtotal() > 0) {
@@ -480,7 +479,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script>
 		shoe.render();
 
-		shoe.cart.on('shoe_checkout', function (evt) {
+		shoe.cart.on('shoe_checkout', function(evt) {
 			var items, len, i;
 
 			if (this.subtotal() > 0) {
@@ -494,13 +493,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- script for responsive tabs -->
 	<script src="js/easy-responsive-tabs.js"></script>
 	<script>
-		$(document).ready(function () {
+		$(document).ready(function() {
 			$('#horizontalTab').easyResponsiveTabs({
 				type: 'default', //Types: default, vertical, accordion           
 				width: 'auto', //auto or any width like 600px
 				fit: true, // 100% fit in a container
 				closed: 'accordion', // Start closed if in accordion view
-				activate: function (event) { // Callback function if tab is switched
+				activate: function(event) { // Callback function if tab is switched
 					var $tab = $(this);
 					var $info = $('#tabInfo');
 					var $name = $('span', $info);
@@ -522,8 +521,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script type="text/javascript" src="js/move-top.js"></script>
 	<script type="text/javascript" src="js/easing.js"></script>
 	<script type="text/javascript">
-		jQuery(document).ready(function ($) {
-			$(".scroll").click(function (event) {
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event) {
 				event.preventDefault();
 				$('html,body').animate({
 					scrollTop: $(this.hash).offset().top
@@ -533,7 +532,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</script>
 	<!-- //end-smoth-scrolling -->
 	<script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
-
+	<script>
+		$('.top_shoe_cart').on('click', function(event) {
+			event.preventDefault();
+			window.location = './checkout.php';
+		})
+	</script>
 
 </body>
 

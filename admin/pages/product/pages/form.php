@@ -316,28 +316,30 @@
                     </div>
                     <div class="form-group">
                       <label>Size</label><br>
-                      <input style="width: 20%; float: left;" value="<?= $size1 ?>" name="size1" class="form-control" id="inputSize1">
-                      <input style="width: 20%; float: left;" value="<?= $size2 ?>" name="size2" class="form-control" id="inputSize2">
-                      <input style="width: 20%; float: left;" value="<?= $size3 ?>" name="size3" class="form-control" id="inputSize3">
-                      <input style="width: 20%; float: left;" value="<?= $size4 ?>" name="size4" class="form-control" id="inputSize4">
-                      <input style="width: 20%; float: left;" value="<?= $size5 ?>" name="size5" class="form-control" id="inputSize5">
+                      <input style="width: 20%; float: left;" value="<?= $size1 ?>" name="size1" class="form-control sizeGroup" id="inputSize1">
+                      <input style="width: 20%; float: left;" value="<?= $size2 ?>" name="size2" class="form-control sizeGroup" id="inputSize2">
+                      <input style="width: 20%; float: left;" value="<?= $size3 ?>" name="size3" class="form-control sizeGroup" id="inputSize3">
+                      <input style="width: 20%; float: left;" value="<?= $size4 ?>" name="size4" class="form-control sizeGroup" id="inputSize4">
+                      <input style="width: 20%; float: left;" value="<?= $size5 ?>" name="size5" class="form-control sizeGroup" id="inputSize5">
                     </div>
                     <div class="form-group" style="margin-top: 52px;">
                       <label>Ảnh</label>
                       <ul class="mailbox-attachments d-flex align-items-stretch clearfix">
                         <li>
-                          <input type="file" style="visibility: hidden;" name="image1">
+                          <input type="file" style="visibility: hidden;" name="image1" class="imageGroup">
+                          <input type="hidden" name="newImage1" value="false">
                           <span style="max-height: fit-content;" class="mailbox-attachment-icon has-img"><img id="image1" src="<?= $images1 ?>"></span>
 
                           <div class="mailbox-attachment-info">
-                            <a class="mailbox-attachment-name"><i class="fas fa-camera"></i> photo1.png</a>
+                            <a class="mailbox-attachment-name"><i class="fas fa-camera"></i> avatar.png</a>
                             <span class="mailbox-attachment-size clearfix mt-1">
                               <a onclick="onClickHandler(event, 'image1')" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-upload-alt"></i></a>
                             </span>
                           </div>
                         </li>
                         <li>
-                          <input type="file" style="visibility: hidden;" name="image2">
+                          <input type="file" style="visibility: hidden;" name="image2" class="imageGroup">
+                          <input type="hidden" name="newImage2" value="false">
                           <span style="max-height: fit-content;" class="mailbox-attachment-icon has-img"><img id="image2" src="<?= $images2 ?>"></span>
 
                           <div class="mailbox-attachment-info">
@@ -348,7 +350,8 @@
                           </div>
                         </li>
                         <li>
-                          <input type="file" style="visibility: hidden;" name="image3">
+                          <input type="file" style="visibility: hidden;" name="image3" class="imageGroup">
+                          <input type="hidden" name="newImage3" value="false">
                           <span style="max-height: fit-content;" class="mailbox-attachment-icon has-img"><img id="image3" src="<?= $images3 ?>"></span>
 
                           <div class="mailbox-attachment-info">
@@ -359,7 +362,8 @@
                           </div>
                         </li>
                         <li>
-                          <input type="file" style="visibility: hidden;" name="image4">
+                          <input type="file" style="visibility: hidden;" name="image4" class="imageGroup">
+                          <input type="hidden" name="newImage4" value="false">
                           <span style="max-height: fit-content;" class="mailbox-attachment-icon has-img"><img id="image4" src="<?= $images4 ?>"></span>
 
                           <div class="mailbox-attachment-info">
@@ -370,7 +374,8 @@
                           </div>
                         </li>
                         <li>
-                          <input type="file" style="visibility: hidden;" name="image5">
+                          <input type="file" style="visibility: hidden;" name="image5" class="imageGroup">
+                          <input type="hidden" name="newImage5" value="false">
                           <span style="max-height: fit-content;" class="mailbox-attachment-icon has-img"><img id="image5" src="<?= $images5 ?>"></span>
 
                           <div class="mailbox-attachment-info">
@@ -381,27 +386,6 @@
                           </div>
                         </li>
                       </ul>
-                      <!-- <div class="custom-file">
-                        <input value="<?= $images1 ?>" type="file" class="custom-file-input" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                      </div>
-                      <div class="custom-file">
-                        <input value="<?= $images2 ?>" type="file" class="custom-file-input" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                      </div>
-                      <div class="custom-file">
-                        <input value="<?= $images3 ?>" type="file" class="custom-file-input" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                      </div>
-                      <div class="custom-file">
-                        <input value="<?= $images4 ?>" type="file" class="custom-file-input" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                      </div>
-                      <div class="custom-file">
-                        <input value="<?= $images5 ?>" type="file" class="custom-file-input" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                      </div> -->
-
                     </div>
                   </div>
                   <!-- /.card-body -->
@@ -466,7 +450,7 @@
         let container = new DataTransfer();
         container.items.add(file);
         //console.log('[name='+id+']');
-        document.querySelector('[name='+id+']').files = container.files;
+        document.querySelector('[name=' + id + ']').files = container.files;
 
       })
     }
@@ -480,16 +464,14 @@
       xhr.responseType = 'blob';
       xhr.send();
     }
-    // window.onload = function(){
-    //   $(document).ready(function(){
-    //     loadURLToInputField(document.getElementById('image1').src,'image1');
-    //     loadURLToInputField(document.getElementById('image1').src,'image2');
-    //     loadURLToInputField(document.getElementById('image1').src,'image3');
-    //     loadURLToInputField(document.getElementById('image1').src,'image4');
-    //     loadURLToInputField(document.getElementById('image1').src,'image5');
-    //   });
-      
-    // }
+
+    window.onload = function(){
+      loadURLToInputField(document.getElementById('image1').src, 'image1');
+      loadURLToInputField(document.getElementById('image2').src, 'image2');
+      loadURLToInputField(document.getElementById('image3').src, 'image3');
+      loadURLToInputField(document.getElementById('image4').src, 'image4');
+      loadURLToInputField(document.getElementById('image5').src, 'image5');
+    };
   </script>
   <script>
     $(function() {
@@ -501,20 +483,26 @@
     }
     $('[name=image1]').on('change', function() {
       document.getElementById('image1').src = URL.createObjectURL(this.files[0]);
+      $('[name=newImage1]').val("true");
     })
     $('[name=image2]').on('change', function() {
       document.getElementById('image2').src = URL.createObjectURL(this.files[0]);
+      $('[name=newImage2]').val("true");
     })
     $('[name=image3]').on('change', function() {
       document.getElementById('image3').src = URL.createObjectURL(this.files[0]);
+      $('[name=newImage3]').val("true");
     })
     $('[name=image4]').on('change', function() {
       document.getElementById('image4').src = URL.createObjectURL(this.files[0]);
+      $('[name=newImage4]').val("true");
     })
     $('[name=image5]').on('change', function() {
       document.getElementById('image5').src = URL.createObjectURL(this.files[0]);
+      $('[name=newImage5]').val("true");
     })
   </script>
+  
   <script>
     $(function() {
       // $.validator.setDefaults({
@@ -538,6 +526,52 @@
             min: 0,
             digits: true
           },
+          size1: {
+            require_from_group: [1, ".sizeGroup"],
+            min: 0,
+            digits: true
+          },
+          size2: {
+            require_from_group: [1, ".sizeGroup"],
+            min: 0,
+            digits: true
+          },
+          size3: {
+            require_from_group: [1, ".sizeGroup"],
+            min: 0,
+            digits: true
+          },
+          size4: {
+            require_from_group: [1, ".sizeGroup"],
+            min: 0,
+            digits: true
+          },
+          size5: {
+            require_from_group: [1, ".sizeGroup"],
+            min: 0,
+            digits: true
+          },
+          image1: {
+            required: true,
+            require_from_group: [1, ".imageGroup"],
+            extension: "jpg|png|jpeg|git|jfif"
+          },
+          image2: {
+            require_from_group: [1, ".imageGroup"],
+            extension: "jpg|png|jpeg|git|jfif"
+          },
+          image3: {
+            require_from_group: [1, ".imageGroup"],
+            extension: "jpg|png|jpeg|git|jfif"
+          },
+          image4: {
+            require_from_group: [1, ".imageGroup"],
+            extension: "jpg|png|jpeg|git|jfif"
+          },
+          image5: {
+            require_from_group: [1, ".imageGroup"],
+            extension: "jpg|png|jpeg|git|jfif"
+          }
         },
         messages: {
           name: {
@@ -549,13 +583,64 @@
             digits: "Hãy nhập một giá trị phù hợp"
           },
           category: "Đây là trường bắt buộc",
-          color: "Đây là trường bắt buộc"
+          color: "Đây là trường bắt buộc",
+          size1: {
+            require_from_group: "Bạn phải điền ít nhất 1 size",
+            min: "Hãy nhập một giá trị phù hợp",
+            digits: "Hãy nhập một giá trị phù hợp",
+          },
+          size2: {
+            require_from_group: "Bạn phải điền ít nhất 1 size",
+            min: "Hãy nhập một giá trị phù hợp",
+            digits: "Hãy nhập một giá trị phù hợp",
+          },
+          size3: {
+            require_from_group: "Bạn phải điền ít nhất 1 size",
+            min: "Hãy nhập một giá trị phù hợp",
+            digits: "Hãy nhập một giá trị phù hợp",
+          },
+          size4: {
+            require_from_group: "Bạn phải điền ít nhất 1 size",
+            min: "Hãy nhập một giá trị phù hợp",
+            digits: "Hãy nhập một giá trị phù hợp",
+          },
+          size5: {
+            require_from_group: "Bạn phải điền ít nhất 1 size",
+            min: "Hãy nhập một giá trị phù hợp",
+            digits: "Hãy nhập một giá trị phù hợp",
+          },
+          image1: {
+            required: "Bạn chưa tải avatar của sản phẩm lên",
+            require_from_group: "Bạn phải tải ít nhất 1 ảnh lên",
+            extension: "File không phù hợp",
+          },
+          image2: {
+            require_from_group: "Bạn phải tải ít nhất 1 ảnh lên",
+            extension: "File không phù hợp",
+          },
+          image3: {
+            require_from_group: "Bạn phải tải ít nhất 1 ảnh lên",
+            extension: "File không phù hợp",
+          },
+          image4: {
+            require_from_group: "Bạn phải tải ít nhất 1 ảnh lên",
+            extension: "File không phù hợp",
+          },
+          image5: {
+            require_from_group: "Bạn phải tải ít nhất 1 ảnh lên",
+            extension: "File không phù hợp",
+          },
+        },
+        groups: {
+          imageGroup: "image1 image2 image3 image4 image5",
+          sizeGroup: "size1 size2 size3 size4 size5"
         },
         errorElement: 'span',
         errorPlacement: function(error, element) {
           error.addClass('invalid-feedback');
           element.closest('.form-group').append(error);
         },
+        errorLabelContainer: "#errorPlacement",
         highlight: function(element, errorClass, validClass) {
           $(element).addClass('is-invalid');
         },

@@ -309,7 +309,7 @@
                               ' . $row['quantity'] . '
                               </td>
                               <td>
-                              ' . number_format($product['price'] * $row['quantity'], 0, ',', '.') . 'đ
+                              ' . $product['price'] * $row['quantity'] . '
                               </td>
                               <td>
                                 <a href="./form.php?orderId=' . $row['orderId'] . '&productId=' . $row['productId'] . '"><button class="btn btn-sm btn-primary btn-info" type="button">Chi tiết</button></a>
@@ -433,11 +433,15 @@
             width: "50%",
             targets: 0
           },
+          {
+            render: $.fn.dataTable.render.number('.', 3, ''),
+            targets: 3
+          },
         ],
         "footerCallback": function(tfoot, data, start, end, display) {
           var api = this.api();
           $(api.column(0).footer()).html("Tổng cộng");
-          $(api.column(3).footer()).html(Intl.NumberFormat('de-DE').format(<?= $total ?>)+"đ");
+          $(api.column(3).footer()).html(Intl.NumberFormat('de-DE').format(<?= $total ?>));
         }
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
       $('#example2').DataTable({
