@@ -104,9 +104,6 @@ $(function () {
     },
   });
 
-
-  
-
   // The Calender
   $("#calendar").datetimepicker({
     format: "L",
@@ -141,12 +138,12 @@ $(function () {
       url: "/admin/pages/chart/index.php",
       method: "GET",
       data: {
-        chart: 'sales'
+        chart: "sales",
       },
       dataType: "json",
       success: function (data) {
-        for(let row of data){
-          labels.push(row["m"]+'/'+row["y"]);
+        for (let row of data) {
+          labels.push(row["m"] + "/" + row["y"]);
           datasets.push(row["total"] ? row["total"] : 0);
         }
         salesGraphChart.update();
@@ -154,7 +151,7 @@ $(function () {
     });
     return {
       labels,
-      datasets
+      datasets,
     };
   };
   var ordersData = function () {
@@ -166,12 +163,12 @@ $(function () {
       url: "/admin/pages/chart/index.php",
       method: "GET",
       data: {
-        chart: 'orders'
+        chart: "orders",
       },
       dataType: "json",
       success: function (data) {
-        for(let row of data){
-          labels.push(row["m"]+'/'+row["y"]);
+        for (let row of data) {
+          labels.push(row["m"] + "/" + row["y"]);
           newOrders.push(row["new"] ? row["new"] : 0);
           progressOrders.push(row["inprogress"] ? row["inprogress"] : 0);
           finishedOrders.push(row["finish"] ? row["finish"] : 0);
@@ -183,62 +180,89 @@ $(function () {
       labels,
       newOrders,
       progressOrders,
-      finishedOrders
+      finishedOrders,
+    };
+  };
+  var productsData = function () {
+    let labels = [];
+    let datasets = [];
+    $.ajax({
+      url: "/admin/pages/chart/index.php",
+      method: "GET",
+      data: {
+        chart: "products",
+      },
+      dataType: "json",
+      success: function (data) {
+        for (let row of data) {
+          labels.push(row["nameCategoryProduct"]);
+          datasets.push(row["percent"]);
+        }
+        pieChart.update();
+      },
+    });
+    return {
+      labels,
+      datasets,
     };
   };
   var salesChartData = {
     labels: salesData().labels,
     datasets: [
       {
-        label: 'Mới',
-        backgroundColor: '#007bff',
-        borderColor: '#007bff',
+        label: "Mới",
+        backgroundColor: "#007bff",
+        borderColor: "#007bff",
         pointRadius: false,
-        pointColor: '#007bff',
-        pointStrokeColor: '#007bff',
-        pointHighlightFill: '#fff',
-        pointHighlightStroke: '#007bff',
-        data: ordersData().newOrders
+        pointColor: "#007bff",
+        pointStrokeColor: "#007bff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "#007bff",
+        data: ordersData().newOrders,
       },
       {
-        label: 'Đang giao hàng',
-        backgroundColor: '#ffc107',
-        borderColor: '#ffc107',
+        label: "Đang giao hàng",
+        backgroundColor: "#ffc107",
+        borderColor: "#ffc107",
         pointRadius: false,
-        pointColor: '#ffc107',
-        pointStrokeColor: '#ffc107',
-        pointHighlightFill: '#fff',
-        pointHighlightStroke: '#ffc107',
-        data: ordersData().progressOrders
+        pointColor: "#ffc107",
+        pointStrokeColor: "#ffc107",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "#ffc107",
+        data: ordersData().progressOrders,
       },
       {
-        label: 'Đã nhận hàng',
-        backgroundColor: '#28a745',
-        borderColor: '#28a745',
+        label: "Đã nhận hàng",
+        backgroundColor: "#28a745",
+        borderColor: "#28a745",
         pointRadius: false,
-        pointColor: '#28a745',
-        pointStrokeColor: '#28a745',
-        pointHighlightFill: '#fff',
-        pointHighlightStroke: '#28a745',
-        data: ordersData().finishedOrders
+        pointColor: "#28a745",
+        pointStrokeColor: "#28a745",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "#28a745",
+        data: ordersData().finishedOrders,
       },
-    ]
+    ],
   };
 
   var salesChartOptions = {
-    responsive              : true,
-    maintainAspectRatio     : false,
+    responsive: true,
+    maintainAspectRatio: false,
     scales: {
-      xAxes: [{
-        stacked: true,
-      }],
-      yAxes: [{
-        ticks: {
-          stepSize: 1,
+      xAxes: [
+        {
+          stacked: true,
         },
-        stacked: true
-      }]
-    }
+      ],
+      yAxes: [
+        {
+          ticks: {
+            stepSize: 1,
+          },
+          stacked: true,
+        },
+      ],
+    },
   };
 
   // This will get the first returned node in the jQuery collection.
@@ -253,17 +277,31 @@ $(function () {
   // Donut Chart
   var pieChartCanvas = $("#sales-chart-canvas").get(0).getContext("2d");
   var pieData = {
-    labels: ["Instore Sales", "Download Sales", "Mail-Order Sales"],
+    labels: productsData().labels,
     datasets: [
       {
-        data: [30, 12, 20],
-        backgroundColor: ["#f56954", "#00a65a", "#f39c12"],
+        data: productsData().datasets,
+        backgroundColor: [
+          "#007bff",
+          "#f012be",
+          "#f39c12",
+          "#28a745",
+          "#d81b60",
+          "#adb5bd",
+        ],
       },
     ],
   };
   var pieOptions = {
     legend: {
       display: false,
+    },
+    tooltips: {
+      callbacks: {
+        label: function (tooltipItem, data) {
+          return data.labels[tooltipItem.index] + ": " + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + "%";
+        },
+      },
     },
     maintainAspectRatio: false,
     responsive: true,
@@ -344,5 +382,4 @@ $(function () {
     data: salesGraphChartData,
     options: salesGraphChartOptions,
   });
- 
 });

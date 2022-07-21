@@ -45,7 +45,7 @@
             }
         }
         else if($_GET["chart"] == 'products'){
-            $sql = "SELECT `nameCategoryProduct`, COUNT(*) as number FROM products GROUP BY `nameCategoryProduct`";
+            $sql = "SELECT `nameCategoryProduct`, ROUND(100*COUNT(*)/(SELECT DISTINCT COUNT(*) FROM products),0) AS percent FROM products GROUP BY `nameCategoryProduct`";
             $data = [];
             if ($result = mysqli_query($con, $sql)) {
                 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
