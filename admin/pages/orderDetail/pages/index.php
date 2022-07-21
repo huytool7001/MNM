@@ -286,6 +286,7 @@
                         <th>Loại địa chỉ</th>
                         <th>Ngày đặt hàng</th>
                         <th>Giỏ hàng</th>
+                        <th>Trạng thái</th>
                         <th>#</th>
                       </tr>
                     </thead>
@@ -317,6 +318,9 @@
                             </td>
                             <td>
                             <a href="../../order/pages/index.php?orderId=' . $row['id'] . '"><button class="btn btn-sm btn-primary btn-info" type="button">Chi tiết</button></a>
+                            </td>
+                            <td>
+                              '.$row['status'].'
                             </td>
                             <td>
                               <a href="./form.php?orderId=' . $row['id'] . '"><button class="btn btn-sm btn-primary btn-info" type="button">Chi tiết</button></a>
@@ -421,30 +425,20 @@
         "autoWidth": false,
         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
         "columnDefs": [{
-            orderable: false,
-            targets: [7, 8]
+          orderable: false,
+          targets: [7, 9]
+        },
+          {
+            width: "12%",
+            targets: [0, 1, 3, 6, 9]
           },
           {
-            width: "10%",
-            targets: 0
-          },
-          {
-            width: "10%",
-            targets: 1
-          },
-          {
-            width: "6%",
-            targets: 2
-          },
-          {
-            width: "7%",
-            targets: 5
-          },
-          {
-            width: "6%",
-            targets: 7
+            width: "8%",
+            targets: [2, 4, 5, 7, 8]
           },
         ],
+        "sScrollX": '100%',
+        "sScrollXInner": "110%",
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
       $('#example2').DataTable({
         "paging": true,

@@ -299,6 +299,14 @@
                         <option value="Cơ quan" <?= $addressType == "Cơ quan" ? 'selected="selected"' : '' ?> >Cơ quan</option>
                       </select>
                     </div>
+                    <div class="form-group">
+                      <label>Trạng thái</label>
+                      <select class="form-control select2" value="<?= $status ?>" name="status">
+                        <option value="Mới" <?= $status == "Mới" ? 'selected="selected"' : '' ?> >Mới</option>
+                        <option value="Đang giao hàng" <?= $status == "Đang giao hàng" ? 'selected="selected"' : '' ?> >Đang giao hàng</option>
+                        <option value="Đã nhận hàng" <?= $status == "Đã nhận hàng" ? 'selected="selected"' : '' ?> >Đã nhận hàng</option>
+                      </select>
+                    </div>
                   </div>
                   <!-- /.card-body -->
                   <div class="card-footer">

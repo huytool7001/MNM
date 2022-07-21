@@ -173,7 +173,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h3 class="agileits-sear-head">Màu</h3>
 					<ul>
 						<?php
-						require './php/config.php';
 						$sql = 'SELECT DISTINCT color FROM products';
 						if ($result = mysqli_query($con, $sql)) {
 							while ($row = mysqli_fetch_array($result)) {

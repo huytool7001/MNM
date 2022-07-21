@@ -17,9 +17,10 @@
         $address = $_POST['address'];
         $city = $_POST['city'];
         $addressType = $_POST['addressType'];
-        $sql = 'INSERT INTO orderDetail(id, customer, phone, address, city, addressType) VALUES(?, ?, ?, ?, ?, ?)';
+        $status = 'Mới';
+        $sql = 'INSERT INTO orderDetail(id, customer, phone, address, city, addressType) VALUES(?, ?, ?, ?, ?, ?, ?)';
         if($stmt = mysqli_prepare($con, $sql)){
-          mysqli_stmt_bind_param($stmt, 'ssssss', $id, $name, $phone, $address, $city, $addressType);
+          mysqli_stmt_bind_param($stmt, 'sssssss', $id, $name, $phone, $address, $city, $addressType, $status);
           mysqli_stmt_execute($stmt);
         }
         $sql = 'INSERT INTO orders(orderId, productId, size, quantity) VALUES(?, ?, ?, ?)';
