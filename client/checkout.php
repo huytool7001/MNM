@@ -190,7 +190,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					<div class="col-md-8 address_form">
 						<h4>Thông tin chi tiết</h4>
-						<form action="#" method="POST" class="creditly-card-form agileinfo_form">
+						<form action="./php/momo.php" method="POST" class="creditly-card-form agileinfo_form" enctype="application/x-www-form-urlencoded">
 							<section>
 								<div class="information-wrapper">
 									<div class="first-row">
@@ -601,26 +601,40 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			})
 			$('.creditly-card-form').on('submit', function(event) {
 				if ($(this).valid()) {
-					event.preventDefault();
 					if($('#total').text() == '0đ'){
+						event.preventDefault();
 						return toastr.warning('Giỏ hàng của bạn vẫn còn trống. Hãy quay lại sau khi thêm sản phẩm vào giỏ hàng của mình');
 					}
-					$.ajax({
-						url: './php/order.php',
-						method: 'POST',
-						dataType: "json",
-						data: {
-							name: $('[name=name]').val(),
-							phone: $('[name=phone]').val(),
-							address: $('[name=address]').val(),
-							city: $('[name=city]').val(),
-							addressType: $('[name=addressType]').val(),
-						},
-						success: function(data) {
-						}
-					});
-					toastr.success('Đặt hàng thành công');
-					setTimeout(function(){window.location.href='./index.php'},2000);
+					// $.ajax({
+					// 	url: './php/momo.php',
+					// 	method: 'POST',
+					// 	dataType: "json",
+					// 	data: {
+					// 		name: $('[name=name]').val(),
+					// 		phone: $('[name=phone]').val(),
+					// 		address: $('[name=address]').val(),
+					// 		city: $('[name=city]').val(),
+					// 		addressType: $('[name=addressType]').val(),
+					// 	},
+					// 	success: function(data) {
+					// 	}
+					// })
+					// $.ajax({
+					// 	url: './php/order.php',
+					// 	method: 'POST',
+					// 	dataType: "json",
+					// 	data: {
+					// 		name: $('[name=name]').val(),
+					// 		phone: $('[name=phone]').val(),
+					// 		address: $('[name=address]').val(),
+					// 		city: $('[name=city]').val(),
+					// 		addressType: $('[name=addressType]').val(),
+					// 	},
+					// 	success: function(data) {
+					// 	}
+					// });
+					// toastr.success('Đặt hàng thành công');
+					// setTimeout(function(){window.location.href='./index.php'},2000);
 				}
 			})
 
