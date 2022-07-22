@@ -291,6 +291,7 @@
                         <th>Loại</th>
                         <th>Màu</th>
                         <th>Giá</th>
+                        <th>Ngày thêm</th>
                         <th>#</th>
                       </tr>
                     </thead>
@@ -316,6 +317,9 @@
                             </td>
                             <td>
                             ' . $row['price'] . '
+                            </td>
+                            <td>
+                            ' . $row['dateCreate'] . '
                             </td>
                             <td>
                               <a href="./form.php?id=' . $row['idCategory_product'] . '"><button class="btn btn-sm btn-primary btn-info" type="button">Chi tiết</button></a>
@@ -437,7 +441,7 @@
         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
         "columnDefs": [{
             orderable: false,
-            targets: [5]
+            targets: [6]
           },
           {
             width: "10%",
@@ -449,13 +453,15 @@
           },
           {
             width: "10%",
-            targets: 5
+            targets: 6
           },
           {
             render: $.fn.dataTable.render.number('.', 3, ''),
             targets: 4
           },
         ],
+        "sScrollX": '100%',
+        "sScrollXInner": "110%",
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
       $('#example2').DataTable({
         "paging": true,
