@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_COOKIE["username"]) && !isset($_COOKIE["password"])) {
+  if (!isset($_SESSION["username"])) {
+    header("location: " . ('../../login/pages/index.php'));
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
