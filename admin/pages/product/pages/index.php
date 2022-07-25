@@ -27,14 +27,6 @@ if (!isset($_COOKIE["username"]) && !isset($_COOKIE["password"])) {
 </head>
 
 <body class="hold-transition sidebar-mini">
-  <?php
-  session_start();
-  if (!isset($_COOKIE["username"]) && !isset($_COOKIE["password"])) {
-    if (!isset($_SESSION["username"])) {
-      header("location: " . ('../../login/pages/index.php'));
-    }
-  }
-  ?>
   <div class="wrapper">
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
