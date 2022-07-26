@@ -321,7 +321,7 @@ if (!isset($_COOKIE["username"]) && !isset($_COOKIE["password"])) {
                               </td>
                               <td>
                                 <a href="./form.php?orderId=' . $row['orderId'] . '&productId=' . $row['productId'] . '"><button class="btn btn-sm btn-primary btn-info" type="button">Chi tiết</button></a>
-                                <button data-orderid="' . $row['orderId'] . '" data-productid="' . $row['productId'] . '" type="button" class="btn btn-sm btn-primary btn-danger btnDelete" data-toggle="modal" data-target="#modal-default">
+                                <button data-orderid="' . $row['orderId'] . '" data-productid="' . $row['productId'] . '" data-size="' . $row['size'] . '" type="button" class="btn btn-sm btn-primary btn-danger btnDelete" data-toggle="modal" data-target="#modal-default">
                                   Xoá
                                 </button>
                               </td>
@@ -389,6 +389,7 @@ if (!isset($_COOKIE["username"]) && !isset($_COOKIE["password"])) {
           <form action="../scripts/delete.php" method="POST">
             <input type="hidden" name="orderId" id="orderId">
             <input type="hidden" name="productId" id="productId">
+            <input type="hidden" name="size" id="size">
             <button type="submit" class="btn btn-primary">Xoá</button>
           </form>
         </div>
@@ -425,6 +426,7 @@ if (!isset($_COOKIE["username"]) && !isset($_COOKIE["password"])) {
       $('.btnDelete').click(function() {
         $('#orderId').val($(this).data('orderid'));
         $('#productId').val($(this).data('productid'));
+        $('#size').val($(this).data('size'));
       })
     })
     $(function() {
