@@ -1,7 +1,7 @@
 <?php
 header('Content-type: text/html; charset=utf-8');
 require './cart.php';
-require './config.php';
+require '../config.php';
 function execPostRequest($url, $data)
 {
     $ch = curl_init($url);

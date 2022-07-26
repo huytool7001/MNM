@@ -1,5 +1,5 @@
 <?php
-    require 'config.php';
+    require '../config.php';
     require './cart.php';
     if(isset($_GET['partnerCode']) && isset($_SESSION['cart'])){
         $data = base64_decode($_GET['extraData']);

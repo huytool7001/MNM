@@ -115,7 +115,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="ads-grid_shop">
 		<div class="shop_inner_inf">
 			<?php
-			require './php/config.php';
+			require 'config.php';
 			if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
 				$query = 'SELECT * FROM products WHERE idCategory_product = "' . $_GET["id"] . '"';
 				if ($result = mysqli_query($con, $query)) {

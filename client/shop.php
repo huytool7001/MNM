@@ -153,7 +153,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h3 class="agileits-sear-head">Loại</h3>
 					<ul>
 						<?php
-						require './php/config.php';
+						require 'config.php';
 						$sql = 'SELECT DISTINCT nameCategoryProduct FROM products';
 						if ($result = mysqli_query($con, $sql)) {
 							while ($row = mysqli_fetch_array($result)) {

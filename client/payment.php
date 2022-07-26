@@ -41,7 +41,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <body>
 <?php
-	require './php/config.php'
+	require 'config.php'
 ?>
 	<!-- banner -->
 <div class="banner_top innerpage" id="home">

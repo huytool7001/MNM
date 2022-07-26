@@ -1,5 +1,5 @@
 <?php
-    require 'config.php';
+    require '../config.php';
     $category = $_POST["category"];
     $minprice = $_POST["minprice"]; 
     $maxprice = $_POST["maxprice"];
